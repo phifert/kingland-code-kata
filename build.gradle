@@ -1,0 +1,30 @@
+plugins {
+    id 'groovy'
+    id 'java'
+}
+
+group 'org.example'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+def junit5_version = '5.7.0'
+def assertj_version = '3.18.1'
+
+dependencies {
+    compile 'org.codehaus.groovy:groovy-all:2.3.11'
+
+    testCompile group: 'org.assertj', name: 'assertj-core', version: "$assertj_version"
+    testCompile group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: "$junit5_version"
+    testCompile group: 'org.junit.jupiter', name: 'junit-jupiter-params', version: "$junit5_version"
+    testRuntime group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: "$junit5_version"
+}
+
+test {
+    useJUnitPlatform()
+    testLogging {
+        events "passed", "skipped", "failed"
+    }
+}
